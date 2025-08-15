@@ -41,39 +41,24 @@ export default function Home() {
   if (showLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center"
-        >
+        <div className="text-center">
           <motion.div
-            className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-blue-500 to-teal-400 bg-clip-text text-transparent mb-8"
-            animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="relative w-20 h-20 mx-auto mb-6"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, ease: 'linear', repeat: Infinity }}
           >
-            TENXL
+            <div className="absolute inset-0 rounded-full border-4 border-teal-400/20" />
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-teal-400" />
           </motion.div>
           <motion.div
-            className="flex space-x-2 justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
+            transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
+            className="text-sm text-white/70 tracking-widest"
           >
-            {[0, 1, 2].map((i) => (
-              <motion.div
-                key={i}
-                className="w-3 h-3 bg-purple-500 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-              />
-            ))}
+            Loading
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     )
   }
@@ -128,26 +113,7 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 p-6">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="bg-white text-black px-3 py-2 font-bold text-lg">
-            TENXL
-          </div>
-          
-          {/* Theme Toggle */}
-          <motion.button 
-            className="text-white hover:text-teal-400 transition-colors"
-            onClick={handleMoonClick}
-            whileHover={{ scale: 1.1, rotate: 15 }}
-            whileTap={{ scale: 0.9 }}
-            title="Light mode? Uhm no.."
-          >
-            <Moon className="w-6 h-6" />
-          </motion.button>
-        </div>
-            </header>
-
+ 
       {/* Left Navigation - Hidden on mobile */}
       <div className="hidden lg:flex fixed left-4 sm:left-8 md:left-16 lg:left-32 top-1/2 transform -translate-y-1/2 flex-col space-y-4 sm:space-y-6 z-50">
         <motion.div

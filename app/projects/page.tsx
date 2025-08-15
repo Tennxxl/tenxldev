@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink, Github, Globe, Star, Code, MessageSquare, Users, Youtube } from 'lucide-react';
@@ -95,6 +95,12 @@ export default function ProjectsPage() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationTitle, setNotificationTitle] = useState<string>('');
   const [notificationText, setNotificationText] = useState<string>('');
+  const [showLoading, setShowLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowLoading(false), 800);
+    return () => clearTimeout(t);
+  }, []);
 
   const showContact = () => {
     setNotificationTitle('Contact');
@@ -102,6 +108,31 @@ export default function ProjectsPage() {
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 3000);
   };
+  if (showLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <motion.div
+            className="relative w-16 h-16 mx-auto mb-6"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, ease: 'linear', repeat: Infinity }}
+          >
+            <div className="absolute inset-0 rounded-full border-4 border-teal-400/20" />
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-teal-400" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
+            className="text-sm text-white/70 tracking-widest"
+          >
+            Loading
+          </motion.div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <main className="min-h-screen bg-black text-white font-sans relative overflow-hidden">
       {/* Pure Black Background with Moving Teal Orbs (same as home) */}
@@ -228,11 +259,7 @@ export default function ProjectsPage() {
       </AnimatePresence>
 
       {/* Header */}
-      <header className="px-6 md:px-10 pt-8 pb-4 relative z-10">
-        <div className="flex items-center justify-between">
-          <div className="bg-white text-black px-3 py-2 font-bold text-lg">TENXL</div>
-        </div>
-      </header>
+     
 
       {/* Hero title */
       }
