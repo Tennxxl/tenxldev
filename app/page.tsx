@@ -15,11 +15,19 @@ export default function Home() {
 
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoading(false)
-    }, 3000)
-
-    return () => clearTimeout(timer)
+    const shortTimer = setTimeout(() => setShowLoading(false), 1200)
+    const hardStop = setTimeout(() => setShowLoading(false), 4000)
+    const onLoad = () => setShowLoading(false)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', onLoad)
+    }
+    return () => {
+      clearTimeout(shortTimer)
+      clearTimeout(hardStop)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('load', onLoad)
+      }
+    }
   }, [])
 
 
@@ -38,33 +46,39 @@ export default function Home() {
     setTimeout(() => setShowNotification(false), 3000)
   }
 
-  if (showLoading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-center">
-          <motion.div
-            className="relative w-20 h-20 mx-auto mb-6"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, ease: 'linear', repeat: Infinity }}
-          >
-            <div className="absolute inset-0 rounded-full border-4 border-teal-400/20" />
-            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-teal-400" />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
-            className="text-sm text-white/70 tracking-widest"
-          >
-            Loading
-          </motion.div>
-        </div>
-      </div>
-    )
-  }
+  // Always render the page; show a transient loading overlay instead of blocking return
 
   return (
     <main className="min-h-screen bg-black text-white font-sans relative">
+      <AnimatePresence>
+        {showLoading && (
+          <motion.div
+            className="fixed inset-0 z-50 grid place-items-center bg-black/80 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="text-center">
+              <motion.div
+                className="relative w-16 h-16 mx-auto mb-6"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, ease: 'linear', repeat: Infinity }}
+              >
+                <div className="absolute inset-0 rounded-full border-4 border-teal-400/20" />
+                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-teal-400" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
+                className="text-sm text-white/70 tracking-widest"
+              >
+                Loading
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Pure Black Background with Moving Teal Orbs */}
       <div className="fixed inset-0 z-0">
         {/* Pure black base */}
