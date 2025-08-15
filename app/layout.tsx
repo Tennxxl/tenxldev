@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   keywords: ['developer', 'portfolio', 'web development', 'full-stack', 'react', 'next.js'],
   authors: [{ name: 'Tennxl' }],
   viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: '/mini_icon.png',
+    shortcut: '/mini_icon.png',
+    apple: '/mini_icon.png',
+  },
 }
 
 export default function RootLayout({

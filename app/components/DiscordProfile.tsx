@@ -399,55 +399,9 @@ export default function DiscordProfile({ userId }: DiscordProfileProps) {
       )}
 
       {/* Activities Section */}
-      {otherActivities.length > 0 && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 rounded-lg p-4 hover:bg-purple-500/15 transition-all"
-          whileHover={{ scale: 1.02 }}
-        >
-          <motion.div 
-            className="flex items-center space-x-3 mb-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-          >
-            <Activity className="w-5 h-5 text-purple-400" />
-            <span className="text-white font-medium text-sm">Current Activity</span>
-            <motion.button
-              className="ml-auto w-6 h-6 bg-purple-500/20 hover:bg-purple-500/30 rounded-full flex items-center justify-center transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ExternalLink className="w-3 h-3 text-purple-400" />
-            </motion.button>
-          </motion.div>
-          {otherActivities.map((activity, index) => (
-            <motion.div 
-              key={index} 
-              className="flex items-center space-x-3 py-2"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1 + index * 0.1 }}
-              whileHover={{ x: 5 }}
-            >
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                {getActivityIcon(activity)}
-              </motion.div>
-              <div className="flex-1">
-                <p className="text-white font-medium text-sm">{getActivityType(activity)} {activity.name}</p>
-                {activity.details && (
-                  <p className="text-white/60 text-xs">{formatActivityText(activity)}</p>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
+      
+       
+   
 
       {/* Status Info */}
       <motion.div 
