@@ -28,7 +28,7 @@ const projects: Project[] = [
     tags: ['JS', 'Discord.js'],
     image: 'https://i.imgur.com/zFmbiLe.jpeg',
 linkUrl: 'https://builtbybit.com/resources/vouch-system-make-your-server-better.54345/',
-linkLabel: 'Cehck out'
+linkLabel: 'Check out'
     ,category: 'Web Development'
   },
   {
@@ -397,4 +397,5 @@ export default function ProjectsPage() {
       
     </main>
   );
+
 }
