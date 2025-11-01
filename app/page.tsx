@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { Moon, Code, ExternalLink, MessageSquare, Users, Zap, Database, Globe, Smartphone } from 'lucide-react'
+import { Moon, Code, ExternalLink, MessageSquare, Users, Zap, Database, Globe, Smartphone, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 import DiscordProfile from './components/DiscordProfile'
 
@@ -155,6 +155,18 @@ export default function Home() {
           </a>
           <span className="text-white/70 text-xs sm:text-sm font-medium group-hover:text-white transition-colors duration-300 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">BuiltByBit</span>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4 }}
+          className="flex flex-col items-center space-y-2 cursor-pointer group transform -rotate-6 hover:scale-110 transition-transform duration-300"
+        >
+          <a href="https://www.fiverr.com/velynor_?public_mode=true" target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center group-hover:bg-green-500/20 group-hover:border-green-400/30 transition-all duration-300 group-hover:rotate-6 shadow-lg">
+            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white/80 group-hover:text-green-300 transition-colors duration-300" />
+          </a>
+          <span className="text-white/70 text-xs sm:text-sm font-medium group-hover:text-white transition-colors duration-300 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">Fiverr</span>
+        </motion.div>
       </div>
 
       {/* Right Navigation - Hidden on mobile */}
@@ -209,6 +221,17 @@ export default function Home() {
             whileTap={{ scale: 0.9 }}
           >
             <ExternalLink className="w-5 h-5 text-white/80" />
+          </motion.a>
+          
+          <motion.a
+            href="https://www.fiverr.com/velynor_?public_mode=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center hover:bg-green-500/20 hover:border-green-400/30 transition-all duration-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ShoppingBag className="w-5 h-5 text-white/80" />
           </motion.a>
           
           <motion.button
