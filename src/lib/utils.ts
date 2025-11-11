@@ -16,7 +16,8 @@ export function getDiscordAvatarUrl(
   } else {
     try {
       const userIdBigInt = BigInt(userId)
-      const defaultAvatarIndex = Number(userIdBigInt >> 22n) % 6
+      const shiftAmount = BigInt(22)
+      const defaultAvatarIndex = Number(userIdBigInt >> shiftAmount) % 6
       return `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png?size=${size}`
     } catch {
       return `https://cdn.discordapp.com/embed/avatars/0.png?size=${size}`
