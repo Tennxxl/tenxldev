@@ -91,7 +91,6 @@ export function Navbar({ profileAvatar, profileName, alwaysVisible = false }: Na
         >
           <div className="container mx-auto max-w-4xl">
             <div className="flex items-center justify-between h-12 px-4 rounded-2xl bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl backdrop-saturate-150 border border-white/20 dark:border-zinc-800/50 shadow-lg">
-              {/* Logo with Profile Image */}
               <Link href="/" className="flex items-center gap-2 group">
                 {profileAvatar ? (
                   <motion.div
@@ -146,9 +145,7 @@ export function Navbar({ profileAvatar, profileName, alwaysVisible = false }: Na
             </Link>
           </div>
 
-          {/* Right Side - Stats & Theme Toggle */}
           <div className="flex items-center gap-2">
-            {/* GitHub Stats */}
             <a
               href="https://github.com/Tennxxl"
               target="_blank"
@@ -162,7 +159,6 @@ export function Navbar({ profileAvatar, profileName, alwaysVisible = false }: Na
                 {loading ? '...' : formatNumber(githubStats.followers)}
               </span>
               
-              {/* Tooltip */}
               {showGitHubTooltip && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md rounded-lg shadow-lg border border-zinc-200/50 dark:border-zinc-700/50 whitespace-nowrap z-50">
                   <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100">View on GitHub</p>
@@ -171,7 +167,6 @@ export function Navbar({ profileAvatar, profileName, alwaysVisible = false }: Na
               )}
             </a>
 
-            {/* Discord Stats */}
             <a
               href="https://discord.gg/9uS8xZgHPW"
               target="_blank"

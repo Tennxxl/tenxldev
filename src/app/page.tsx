@@ -14,7 +14,7 @@ import { useLanyard } from '@/hooks/useLanyard'
 import Aurora from '@/components/ui/aurora'
 import { ShinyText } from '@/components/ui/shiny-text'
 import { SpotifyWidget } from '@/components/ui/spotify-widget'
-import { cn } from '@/lib/utils'
+import { cn, getDiscordAvatarUrl } from '@/lib/utils'
 
 import { SiNextdotjs, SiReact, SiVite, SiVuedotjs, SiJavascript, SiPython, SiLua } from 'react-icons/si'
 
@@ -33,7 +33,7 @@ export default function Home() {
     : null
   
   const profileAvatar = discordUser?.id && !lanyardLoading
-    ? `https://api.lanyard.rest/${discordUser.id}.png`
+    ? getDiscordAvatarUrl(discordUser.id, discordUser.avatar || null)
     : null
 
   const [scrolled, setScrolled] = useState(false)
@@ -60,10 +60,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen text-zinc-900 dark:text-zinc-100 relative">
-      {/* Navbar */}
       <Navbar profileAvatar={profileAvatar} profileName={profileName} />
       
-      {/* Aurora Background */}
       <div className="fixed inset-0 w-full h-full z-0">
         <Aurora
           colorStops={['#111827', '#064e3b', '#022c22']}
@@ -73,19 +71,16 @@ export default function Home() {
           />
         </div>
       
-      {/* Content with backdrop */}
       <div className="relative z-10 min-h-screen">
 
 
       <div className="container mx-auto px-6 pt-24 pb-12 max-w-4xl">
-        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center gap-6 mb-12"
         >
-          {/* Profile Image - Above username, animates to navbar when scrolled */}
           {profileAvatar && !scrolled && (
             <motion.div
               layoutId="profile-image"
@@ -118,7 +113,6 @@ export default function Home() {
             </motion.div>
           )}
 
-          {/* Name and Title */}
           {profileName && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -144,7 +138,6 @@ export default function Home() {
             </motion.div>
           )}
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -176,7 +169,7 @@ export default function Home() {
               <p className="text-sm">Discord</p>
             </a>
             <a
-              href="https://reddit.com"
+              href="https://www.reddit.com/user/Sad-Cardiologist9107/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800/50 transition-colors"
@@ -223,10 +216,8 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Tabs */}
         <Tabs tabs={tabs} defaultTab="about" onTabChange={setActiveTab} />
 
-        {/* About Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -266,10 +257,8 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* GitHub Contributions */}
         <GitHubContributions username="Tennxxl" />
 
-        {/* File Tree Structure */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -314,7 +303,6 @@ export default function Home() {
           </Tree>
         </motion.div>
 
-        {/* Tech Stack */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -361,7 +349,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Footer */}
         <div className="flex flex-col items-center gap-4 pb-8">
           <p className="text-center opacity-70 max-w-[580px] font-mono font-semibold text-base tracking-tight text-zinc-600 dark:text-zinc-400">
             Made with <span className="text-red-500">♥</span> by tennxl
@@ -370,7 +357,6 @@ export default function Home() {
       </div>
       </div>
 
-      {/* Spotify Widget */}
       {discordUserId && (
         <SpotifyWidget discordUserId={discordUserId} />
       )}

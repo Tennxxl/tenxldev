@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Aurora from '@/components/ui/aurora'
 import { Search, User, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import { getDiscordAvatarUrl } from '@/lib/utils'
 
 export default function DiscordCheckPage() {
   const tennxlUserId = process.env.NEXT_PUBLIC_DISCORD_USER_ID || ''
@@ -22,7 +23,7 @@ export default function DiscordCheckPage() {
     : null
   
   const profileAvatar = discordUser?.id && !loading
-    ? `https://api.lanyard.rest/${discordUser.id}.png`
+    ? getDiscordAvatarUrl(discordUser.id, discordUser.avatar || null)
     : null
 
   const tennxlDiscordUser = tennxlData?.data?.discord_user
@@ -31,7 +32,7 @@ export default function DiscordCheckPage() {
     : null
   
   const tennxlProfileAvatar = tennxlDiscordUser?.id
-    ? `https://api.lanyard.rest/${tennxlDiscordUser.id}.png`
+    ? getDiscordAvatarUrl(tennxlDiscordUser.id, tennxlDiscordUser.avatar || null)
     : null
 
   const handleSearch = () => {
@@ -73,7 +74,6 @@ export default function DiscordCheckPage() {
               Enter a Discord User ID to check their status
             </p>
             
-            {/* Search Input */}
             <div className="max-w-md mx-auto mb-8">
               <div className="flex items-center gap-2 p-4 rounded-lg bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50">
                 <User className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
@@ -114,7 +114,6 @@ export default function DiscordCheckPage() {
             </div>
           ) : (
             <div className="space-y-6">
-              {/* User Info */}
               {discordUser && (
                 <div className="p-6 rounded-lg bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50">
                   <div>
@@ -129,7 +128,6 @@ export default function DiscordCheckPage() {
                 </div>
               )}
 
-              {/* Spotify */}
               {spotify && (
                 <div className="p-6 rounded-lg bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50">
                   <h3 className="font-mono font-semibold text-lg mb-3">Listening to Spotify</h3>
@@ -151,7 +149,6 @@ export default function DiscordCheckPage() {
                 </div>
               )}
 
-              {/* Activities */}
               {activities.length > 0 && (
                 <div className="p-6 rounded-lg bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50">
                   <h3 className="font-mono font-semibold text-lg mb-3">Activities</h3>
