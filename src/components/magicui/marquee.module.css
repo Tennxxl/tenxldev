@@ -1,0 +1,41 @@
+@keyframes marquee-horizontal {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+@keyframes marquee-horizontal-reverse {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100% + 1rem));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - 1rem));
+  }
+}
+
+.marqueeHorizontal {
+  animation: marquee-horizontal var(--duration, 40s) linear infinite;
+}
+
+.marqueeHorizontalReverse {
+  animation: marquee-horizontal-reverse var(--duration, 40s) linear infinite;
+}
+
+.marqueeVertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+
+

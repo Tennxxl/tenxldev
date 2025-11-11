@@ -1,0 +1,26 @@
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100% + 1rem));
+  }
+}
+
+.marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+
+.marquee-reverse {
+  animation: marquee-reverse var(--duration, 40s) linear infinite;
+}
+
